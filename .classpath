@@ -4,5 +4,9 @@
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="E:/Documents/University Work/Geolocation_Java/pdfbox-app-1.8.3.jar"/>
+	<classpathentry kind="lib" path="E:/Google Drive/pdfbox/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/Google Drive/pdfbox/FhtinoPdfBox.jar"/>
+	<classpathentry kind="lib" path="E:/Google Drive/pdfbox/FontBox-0.1.0-dev.jar"/>
+	<classpathentry kind="lib" path="E:/Google Drive/pdfbox/log4j-1.2.15.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
