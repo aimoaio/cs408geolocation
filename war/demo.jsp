@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
 <%@page import="geolocation.PdfBoxGAEDemo"%>
 <%@page import="java.util.Date"%>
@@ -8,9 +8,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>PdfBox running on GAE - Demo</title>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="/js/map.js"></script>
+  
 </head>
-<body style="font-family: Verdana; font-size: 12px;">
+ <body onload="init()"> 
+        <h1>Mapping Stuff</h1>
+        <div id="map_canvas" style="width:100%;height:800px"></div> 
+<!-- <body style="font-family: Verdana; font-size: 12px;"> -->
 <h2>PdfBox running on GAE - Demo</h2>
+
+<div>
+
+	
 <%
 	String pdfurl = request.getParameter("pdfurl");
 	String x = request.getParameter("X");
@@ -30,6 +41,8 @@
 		h = "800";
 
 	String captchaError = "";
+	
+	
 
 // 	if (request.getParameter("btnSumbit") != null) {
 // 		String recaptcha_challenge_field = request.getParameter("recaptcha_challenge_field");
@@ -41,6 +54,7 @@
 // 		}
 // 	}
 %>
+<br />
 <div style="background: #FFFFBB; display: inline-block; padding: 10px;">
 <form method="post">Pdf url: <input type="text" name="pdfurl"
 	value="<%=pdfurl%>" style="width: 400px;" /><br />
