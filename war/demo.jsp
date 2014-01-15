@@ -43,6 +43,7 @@
 	String captchaError = "";
 	
 	
+	
 
 // 	if (request.getParameter("btnSumbit") != null) {
 // 		String recaptcha_challenge_field = request.getParameter("recaptcha_challenge_field");
@@ -80,6 +81,7 @@ Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
 			int ww = Integer.parseInt(w);
 			int hh = Integer.parseInt(h);
 			String pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh);
+			
 
 			Date endDate = new Date();
 			double deltaSeconds = (endDate.getTime() - startDate.getTime()) / 1000.0;

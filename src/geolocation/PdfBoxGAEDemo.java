@@ -37,8 +37,11 @@ public class PdfBoxGAEDemo {
 				sa.addRegion("Area1", new Rectangle(x, y, w, h));
 				PDPage p = (PDPage) doc.getDocumentCatalog().getAllPages().get(0);
 				sa.extractRegions(p);
-
-				return sa.getTextForRegion("Area1");
+				
+				String text = sa.getTextForRegion("Area1");
+				System.out.println(text);
+				text = text.replace("Hamilton", "HEHEHEHE");
+				return text;
 
 			} else
 				throw new Exception("Http return code <> 200. Received: " + httpRespCode);

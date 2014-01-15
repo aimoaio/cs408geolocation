@@ -18,8 +18,42 @@
           "location": latLng
         },
         function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK)
+          if (status == google.maps.GeocoderStatus.OK){
             document.getElementById("address").innerHTML = results[0].formatted_address;
+            var country;
+            var postcode;
+            var locality;
+            var street;
+            var state;
+
+            for (i=0;i<results[0].address_components.length;i++){
+                for (j=0;j<results[0].address_components[i].types.length;j++){
+                   if(results[0].address_components[i].types[j]=="country")
+    {
+                      country = results[0].address_components[i].long_name
+    ;
+                    }
+                    else if(results[0].address_components[i].types[j]=="postal_code"){
+                      postcode = results[0].address_components[i].long_name;
+                      }
+                      else if(results[0].address_components[i].types[j]=="sublocality" || results[0].address_components[i].types[j]=="locality"){
+                      locality = results[0].address_components[i].long_name;
+                      }
+                       else if(results[0].address_components[i].types[j]=="route"){
+                    street = results[0].address_components[i].long_name;
+                      } else if(results[0].address_components[i].types[j]=="administrative_area_level_1" || results[0].address_components[i].types[j]=="administrative_area_level_2"){
+                    state = results[0].address_components[i].long_name;
+                      }
+                      
+            }
+            }
+           
+            document.getElementById("geocodeterms").innerHTML="Street: " + street.toString() +
+            "<br>Town/City: " + locality.toString() +
+            "<br>County/State: " + state.toString() +
+            "<br> Country: " + country.toString() +
+            "<br> Postcode: " + postcode.toString();
+          }
           else
             document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
         });
@@ -89,6 +123,7 @@
     <h1>Basic example</h1>
     <div id="map"></div>
     <p><b>Address</b>: <span id="address"></span></p>
+    <p><span id="geocodeterms"></span></p>
     <p id="error"></p>
     <h2>PdfBox running on GAE - Demo</h2>
 
