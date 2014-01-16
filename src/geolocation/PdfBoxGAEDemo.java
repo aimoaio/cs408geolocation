@@ -17,7 +17,7 @@ public class PdfBoxGAEDemo {
 
 	private static final Logger log = Logger.getLogger(PdfBoxGAEDemo.class.getName());
 
-	public static String Exec(String pdfUrl, float x, float y, float w, float h) {
+	public static String Exec(String pdfUrl, float x, float y, float w, float h, String term) {
 
 		log.info("PdfUrl=" + pdfUrl);
 
@@ -40,7 +40,12 @@ public class PdfBoxGAEDemo {
 				
 				String text = sa.getTextForRegion("Area1");
 				System.out.println(text);
-				text = text.replace("Hamilton", "HEHEHEHE");
+				if(term!=null){
+				String newterm = "<span style='background-color:yellow;'>" + term + "</span>";
+				text = text.replace(term, newterm);
+				} else {
+					System.out.println("no term found");
+				}
 				return text;
 
 			} else

@@ -136,6 +136,7 @@
 	String y = request.getParameter("Y");
 	String w = request.getParameter("W");
 	String h = request.getParameter("H");
+	String term = request.getParameter("term");
 
 	if (pdfurl == null)
 		pdfurl = "";
@@ -164,8 +165,10 @@
 %>
 <br />
 <div style="background: #FFFFBB; display: inline-block; padding: 10px;">
+
 <form method="post">Pdf url: <input type="text" name="pdfurl"
 	value="<%=pdfurl%>" style="width: 400px;" /><br />
+	Search term: <input type="text" name="term" value="<%=term%>"/> <br/>
 Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
 	style="width: 50px;" /> Y:<input type="text" name="Y" value="<%=y%>"
 	style="width: 50px;" /> W:<input type="text" name="W" value="<%=w%>"
@@ -187,7 +190,8 @@ Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
 			int yy = Integer.parseInt(y);
 			int ww = Integer.parseInt(w);
 			int hh = Integer.parseInt(h);
-			String pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh);
+			String tterm = term;
+			String pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh, tterm);
 
 			Date endDate = new Date();
 			double deltaSeconds = (endDate.getTime() - startDate.getTime()) / 1000.0;
