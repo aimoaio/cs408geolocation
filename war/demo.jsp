@@ -80,7 +80,8 @@ Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
 			int yy = Integer.parseInt(y);
 			int ww = Integer.parseInt(w);
 			int hh = Integer.parseInt(h);
-			String pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh);
+			String text = "hehe";
+			String pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww,hh, text);
 			
 
 			Date endDate = new Date();

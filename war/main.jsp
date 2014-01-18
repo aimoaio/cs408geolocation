@@ -127,7 +127,7 @@
     <p id="error"></p>
     <h2>PdfBox running on GAE - Demo</h2>
 
-<div>
+
 
 	
 <%

@@ -9,6 +9,8 @@ import javax.servlet.http.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
+
+
 @SuppressWarnings("serial")
 public class Geolocation408Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
