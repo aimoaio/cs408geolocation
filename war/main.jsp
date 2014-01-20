@@ -55,7 +55,7 @@
             "<br>County/State: " + state.toString() +
             "<br> Country: " + country.toString() +
             "<br> Postcode: " + postcode.toString();
-            document.getElementById("town").innerHTML= locality.toString();
+            document.getElementById("termtest").value= locality.toString();
           }
           else
             document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
@@ -172,13 +172,15 @@
 
 <form method="post">Pdf url: <input type="text" name="pdfurl"
 	value="<%=pdfurl%>" style="width: 400px;" /><br />
-	Search term: <input type="text" name="term" value="<%=term%>"/> <br/>
+	Search term: <input type="text" id="termtest" name="term" value="<%=term%>"/> <br/>
 Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
 	style="width: 50px;" /> Y:<input type="text" name="Y" value="<%=y%>"
 	style="width: 50px;" /> W:<input type="text" name="W" value="<%=w%>"
 	style="width: 50px;" /> H:<input type="text" name="H" value="<%=h%>"
-	style="width: 50px;" /> <br />
+	style="width: 50px;" /> 
+	<input id="data" type="hidden" value="" /><br />
 <br />
+
 <script type="text/javascript"
 	src="http://api.recaptcha.net/challenge?k=6Lfn2AoAAAAAAGmBLQvWJIh7usoIJFV37BsALStI&error=<%=captchaError%>"></script><br />
 
@@ -195,6 +197,7 @@ Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
 			int ww = Integer.parseInt(w);
 			int hh = Integer.parseInt(h);
 			String tterm = term;
+			String term2 = request.getParameter("data");
 			ArrayList<String> pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh, tterm);
 			pdfText.toString();
 

@@ -50,8 +50,9 @@ public class PdfBoxGAEDemo {
 				//PDPage p = (PDPage) doc.getDocumentCatalog().getAllPages().get(0); //this line is the problem
 				PDDocumentCatalog cat = doc.getDocumentCatalog();
 				System.out.println("line 1.3");
-				System.out.println(cat.toString());
+				//System.out.println(cat.toString());
 				List <PDPage> pages = cat.getAllPages();
+				System.out.println("term: " + term);
 				System.out.println("line 1.4");
 				for (int i=0;i<4; i++){
 					PDPage p = pages.get(i);
@@ -63,6 +64,7 @@ public class PdfBoxGAEDemo {
 						text.add(s);
 						}
 				}
+				
 				//System.out.println("line 1.5");
 				//System.out.println("line2");
 				//text = sa.getTextForRegion("Area1");
