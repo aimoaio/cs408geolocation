@@ -6,6 +6,7 @@ import it.fhtino.pdfbox.alt.Rectangle;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,12 +20,14 @@ public class PdfBoxGAEDemo {
 
 	private static final Logger log = Logger.getLogger(PdfBoxGAEDemo.class.getName());
 	
-	static String text;
+	static ArrayList<String> text;
+	static String s;
 
-	public static String Exec(String pdfUrl, int x, int y, int w, int h, String term) {
+	public static ArrayList<String> Exec(String pdfUrl, int x, int y, int w, int h, String term) {
 
 		log.info("PdfUrl=" + pdfUrl);
 		System.out.println("didnt get into try");
+		text = new ArrayList<String>();
 
 		try {
 			URL urlObj = new URL(pdfUrl);
@@ -50,21 +53,20 @@ public class PdfBoxGAEDemo {
 				System.out.println(cat.toString());
 				List <PDPage> pages = cat.getAllPages();
 				System.out.println("line 1.4");
-				PDPage p = pages.get(0);
-				System.out.println("line 1.5");
-				sa.extractRegions(p);
-				System.out.println("line2");
-				
-				text = sa.getTextForRegion("Area1");
-				//System.out.println(text);
-				if(term!=null){
-				String newterm = "<span style='background-color:yellow;'>" + term + "</span>";
-				text = text.replace(term, newterm);
-				} else {
-					System.out.println("no term found");
+				for (int i=0;i<4; i++){
+					PDPage p = pages.get(i);
+					sa.extractRegions(p);
+					s = sa.getTextForRegion("Area1");
+					if(term!=null){
+						String newterm = "<span style='background-color:yellow;'>" + term + "</span>";
+						s = s.replace(term, newterm);
+						text.add(s);
+						}
 				}
-				System.out.println("I got here");
-				
+				//System.out.println("line 1.5");
+				//System.out.println("line2");
+				//text = sa.getTextForRegion("Area1");
+				//System.out.println(text);
 				return text;
 				
 
@@ -75,7 +77,8 @@ public class PdfBoxGAEDemo {
 
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.toString());
-			return "*** EXCEPTION *** " + e.toString();
+			//return "*** EXCEPTION *** " + e.toString();
 		}
+		return text;
 	}
 }

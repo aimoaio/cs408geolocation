@@ -7,6 +7,8 @@
 
 <%@page import="geolocation.PdfBoxGAEDemo"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
   <head>
     <meta charset="UTF-8" />
     <title>Geolocation and Google Maps API</title>
@@ -53,6 +55,7 @@
             "<br>County/State: " + state.toString() +
             "<br> Country: " + country.toString() +
             "<br> Postcode: " + postcode.toString();
+            document.getElementById("town").innerHTML= locality.toString();
           }
           else
             document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
@@ -124,6 +127,7 @@
     <div id="map"></div>
     <p><b>Address</b>: <span id="address"></span></p>
     <p><span id="geocodeterms"></span></p>
+    <p><span id="town"></span></p>
     <p id="error"></p>
     <h2>PdfBox running on GAE - Demo</h2>
 
@@ -191,7 +195,8 @@ Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
 			int ww = Integer.parseInt(w);
 			int hh = Integer.parseInt(h);
 			String tterm = term;
-			String pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh, tterm);
+			ArrayList<String> pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh, tterm);
+			pdfText.toString();
 
 			Date endDate = new Date();
 			double deltaSeconds = (endDate.getTime() - startDate.getTime()) / 1000.0;
