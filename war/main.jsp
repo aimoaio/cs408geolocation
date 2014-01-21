@@ -68,7 +68,7 @@
         writeAddressName(userLatLng);
  
         var myOptions = {
-          zoom : 15,
+          zoom : 18,
           center : userLatLng,
           mapTypeId : google.maps.MapTypeId.ROADMAP
         };
@@ -80,19 +80,6 @@
           position: userLatLng
         });
 
-       
-        
-       // Draw a circle around the user position to have an idea of the current localization accuracy
-        var circle = new google.maps.Circle({
-          center: userLatLng,
-          radius: position.coords.accuracy,
-          map: mapObject,
-          fillColor: '#0000FF',
-          fillOpacity: 0.5,
-          strokeColor: '#0000FF',
-          strokeOpacity: 1.0
-        });
-        mapObject.fitBounds(circle.getBounds());
       }
  
       function geolocationError(positionError) {
