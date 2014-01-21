@@ -197,7 +197,7 @@ Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
 			int ww = Integer.parseInt(w);
 			int hh = Integer.parseInt(h);
 			String tterm = term;
-			String term2 = request.getParameter("data");
+			//String term2 = request.getParameter("data");
 			ArrayList<String> pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh, tterm);
 			pdfText.toString();
 
