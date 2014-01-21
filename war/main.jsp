@@ -50,11 +50,11 @@
             }
             }
            
-            document.getElementById("geocodeterms").innerHTML="Street: " + street.toString() +
-            "<br>Town/City: " + locality.toString() +
-            "<br>County/State: " + state.toString() +
-            "<br> Country: " + country.toString() +
-            "<br> Postcode: " + postcode.toString();
+            document.getElementById("geocodeterms").innerHTML="<b>Street: </b> " + street.toString() +
+            "<br><b>Town/City:</b> " + locality.toString() +
+            "<br><b>County/State: </b> " + state.toString() +
+            "<br><b>Country: </b>" + country.toString() +
+            "<br><b> Postcode: </b>" + postcode.toString();
             document.getElementById("termtest").value= locality.toString();
           }
           else
@@ -110,16 +110,13 @@
     </style>
   </head>
   <body>
-    <h1>Basic example</h1>
+    <h1>Geolocation basic example</h1>
     <div id="map"></div>
-    <p><b>Address</b>: <span id="address"></span></p>
+    <p><b>Full Address</b>: <span id="address"></span></p>
     <p><span id="geocodeterms"></span></p>
     <p><span id="town"></span></p>
     <p id="error"></p>
-    <h2>PdfBox running on GAE - Demo</h2>
-
-
-
+    <h2>PdfBox on GAE - Limit of 4 page extraction</h2>
 	
 <%
 	String pdfurl = request.getParameter("pdfurl");
@@ -159,18 +156,13 @@
 
 <form method="post">Pdf url: <input type="text" name="pdfurl"
 	value="<%=pdfurl%>" style="width: 400px;" /><br />
-	Search term: <input type="text" id="termtest" name="term" value="<%=term%>"/> <br/>
-Area (pdf units) - X:<input type="text" name="X" value="<%=x%>"
-	style="width: 50px;" /> Y:<input type="text" name="Y" value="<%=y%>"
-	style="width: 50px;" /> W:<input type="text" name="W" value="<%=w%>"
-	style="width: 50px;" /> H:<input type="text" name="H" value="<%=h%>"
+	Search term: <input type="text" id="termtest" name="term" value="<%=term%>"/>
+	<input type="hidden" name="X" value="<%=x%>"
+	style="width: 50px;" /> <input type="hidden" name="Y" value="<%=y%>"
+	style="width: 50px;" /> <input type="hidden" name="W" value="<%=w%>"
+	style="width: 50px;" /> <input type="hidden" name="H" value="<%=h%>"
 	style="width: 50px;" /> 
-	<input id="data" type="hidden" value="" /><br />
-<br />
-
-<script type="text/javascript"
-	src="http://api.recaptcha.net/challenge?k=6Lfn2AoAAAAAAGmBLQvWJIh7usoIJFV37BsALStI&error=<%=captchaError%>"></script><br />
-
+	<input id="data" type="hidden" value="" />
 <input type="submit" name="btnSumbit" value="Get text!" /></form>
 </div>
 <br />
