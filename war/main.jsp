@@ -154,11 +154,11 @@
 <form method="post">Pdf url: <input type="text" name="pdfurl"
 	value="<%=pdfurl%>" style="width: 400px;" /><br />
 	Search terms: 
-	<input type="text" id="streetterm" name="street" value="<%=term%>"/>
-	<input type="text" id="townterm" name="town" value="<%=term2%>"/> <br/>
-	<input type="text" id="stateterm" name="state" value="<%=term3%>"/>
-	<input type="text" id="countryterm" name="country" value="<%=term4%>"/>
-	<input type="text" id="postcodeterm" name="postcode" value="<%=term5%>"/>
+	<input readonly="readonly" type="text" id="streetterm" name="street" value="<%=term%>"/>
+	<input readonly="readonly"type="text" id="townterm" name="town" value="<%=term2%>"/> <br/>
+	<input readonly="readonly"type="text" id="stateterm" name="state" value="<%=term3%>"/>
+	<input readonly="readonly"type="text" id="countryterm" name="country" value="<%=term4%>"/>
+	<input readonly="readonly"type="text" id="postcodeterm" name="postcode" value="<%=term5%>"/>
 	<input type="hidden" name="X" value="<%=x%>"
 	style="width: 50px;" /> <input type="hidden" name="Y" value="<%=y%>"
 	style="width: 50px;" /> <input type="hidden" name="W" value="<%=w%>"
