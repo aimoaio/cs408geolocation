@@ -55,7 +55,11 @@
             "<br><b>County/State: </b> " + state.toString() +
             "<br><b>Country: </b>" + country.toString() +
             "<br><b> Postcode: </b>" + postcode.toString();
-            document.getElementById("termtest").value= locality.toString();
+            document.getElementById("townterm").value= locality.toString();
+            document.getElementById("streetterm").value = street.toString();
+            document.getElementById("stateterm").value = state.toString();
+            document.getElementById("countryterm").value = country.toString();
+            document.getElementById("postcodeterm").value = postcode.toString();
           }
           else
             document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
@@ -124,7 +128,11 @@
 	String y = request.getParameter("Y");
 	String w = request.getParameter("W");
 	String h = request.getParameter("H");
-	String term = request.getParameter("term");
+	String term = request.getParameter("street");
+	String term2 = request.getParameter("town");
+	String term3 = request.getParameter("state");
+	String term4 = request.getParameter("country");
+	String term5 = request.getParameter("postcode");
 
 	if (pdfurl == null)
 		pdfurl = "";
@@ -138,31 +146,25 @@
 		h = "800";
 
 	String captchaError = "";
-	
-	
 
-// 	if (request.getParameter("btnSumbit") != null) {
-// 		String recaptcha_challenge_field = request.getParameter("recaptcha_challenge_field");
-// 		String recaptcha_response_field = request.getParameter("recaptcha_response_field");
-// 		String remoteip = request.getRemoteAddr();
-// 		ReCaptcha rcap = new ReCaptcha("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-// 		if (!rcap.check(recaptcha_challenge_field, recaptcha_response_field, remoteip)) {
-// 			captchaError = rcap.get_errorCode();
-// 		}
-// 	}
 %>
 <br />
 <div style="background: #FFFFBB; display: inline-block; padding: 10px;">
 
 <form method="post">Pdf url: <input type="text" name="pdfurl"
 	value="<%=pdfurl%>" style="width: 400px;" /><br />
-	Search term: <input type="text" id="termtest" name="term" value="<%=term%>"/>
+	Search terms: 
+	<input type="text" id="streetterm" name="street" value="<%=term%>"/>
+	<input type="text" id="townterm" name="town" value="<%=term2%>"/> <br/>
+	<input type="text" id="stateterm" name="state" value="<%=term3%>"/>
+	<input type="text" id="countryterm" name="country" value="<%=term4%>"/>
+	<input type="text" id="postcodeterm" name="postcode" value="<%=term5%>"/>
 	<input type="hidden" name="X" value="<%=x%>"
 	style="width: 50px;" /> <input type="hidden" name="Y" value="<%=y%>"
 	style="width: 50px;" /> <input type="hidden" name="W" value="<%=w%>"
 	style="width: 50px;" /> <input type="hidden" name="H" value="<%=h%>"
 	style="width: 50px;" /> 
-	<input id="data" type="hidden" value="" />
+
 <input type="submit" name="btnSumbit" value="Get text!" /></form>
 </div>
 <br />
@@ -175,9 +177,13 @@
 			int yy = Integer.parseInt(y);
 			int ww = Integer.parseInt(w);
 			int hh = Integer.parseInt(h);
-			String tterm = term;
-			//String term2 = request.getParameter("data");
-			ArrayList<String> pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh, tterm);
+			ArrayList<String> geoterms = new ArrayList<String>();
+			geoterms.add(term);
+			geoterms.add(term2);
+			geoterms.add(term3);
+			geoterms.add(term4);
+			geoterms.add(term5);
+			ArrayList<String> pdfText = geolocation.PdfBoxGAEDemo.Exec(pdfurl, xx, yy, ww, hh, geoterms);
 			pdfText.toString();
 
 			Date endDate = new Date();

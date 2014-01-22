@@ -23,12 +23,13 @@ public class PdfBoxGAEDemo {
 	static ArrayList<String> text;
 	static String s;
 
-	public static ArrayList<String> Exec(String pdfUrl, int x, int y, int w, int h, String term) {
+	public static ArrayList<String> Exec(String pdfUrl, int x, int y, int w, int h, ArrayList<String> terms) {
 
 		log.info("PdfUrl=" + pdfUrl);
 		System.out.println("didnt get into try");
 		text = new ArrayList<String>();
-
+		ArrayList<String> searchterms = terms;
+	
 		try {
 			URL urlObj = new URL(pdfUrl);
 			HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
@@ -52,15 +53,24 @@ public class PdfBoxGAEDemo {
 				System.out.println("line 1.3");
 				//System.out.println(cat.toString());
 				List <PDPage> pages = cat.getAllPages();
-				System.out.println("term: " + term);
+				
 				System.out.println("line 1.4");
+				
+				//loop for pages
 				for (int i=0;i<4; i++){
 					PDPage p = pages.get(i);
 					sa.extractRegions(p);
-					s = sa.getTextForRegion("Area1");
-					if(term!=null){
-						String newterm = "<span style='background-color:yellow;'>" + term + "</span>";
-						s = s.replace(term, newterm);
+					s = sa.getTextForRegion("Area1"); //get the text for the page
+					
+					if(searchterms.size()!=0){
+						
+						for(int j=0;j<searchterms.size();j++){
+						String replace = searchterms.get(j);
+						System.out.println("Terms: " + replace);
+						String newterm = "<span style='background-color:yellow;'>" + replace + "</span>";
+						s = s.replace(replace, newterm);
+						
+						}
 						text.add(s);
 						}
 				}
